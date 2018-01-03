@@ -1,0 +1,8 @@
+问题：
+列名中包含中文字符，但是在重命名时第一列不成功，问题如下：
+data.rename(columns={'代码':'Stkcd'},inplace=True)不成功。
+
+解决方法：
+经查，data.columns显示所有列名,'代码'实际上为''\ufeff代码',原代码改为：
+data.rename(columns={'\ufeff代码':'Stkcd'},inplace=True)
+问题解决。
